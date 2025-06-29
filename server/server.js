@@ -3,13 +3,13 @@ const cors = require("cors");
 
 const app = express();
 
-
 // CORS configuration
 const allowedOrigins = [
   "http://localhost",
   "http://localhost:3000",
   "http://127.0.0.1:3000",
-  "http://34.124.103.42"
+  "http://34.124.103.42",
+  "http://localhost:5000",
 ];
 
 app.use(
@@ -46,7 +46,9 @@ function getMinimumCoins(targetAmount, denominations) {
   }
 
   if (targetAmount !== 0) {
-    throw new Error("Target amount cannot be achieved with given denominations");
+    throw new Error(
+      "Target amount cannot be achieved with given denominations"
+    );
   }
 
   return result.sort((a, b) => a - b);
@@ -77,7 +79,9 @@ app.post("/api/coins", (req, res) => {
       .filter((c) => !isNaN(c) && c > 0);
 
     if (coins.length === 0) {
-      return res.status(400).json({ error: "No valid coin denominations provided" });
+      return res
+        .status(400)
+        .json({ error: "No valid coin denominations provided" });
     }
 
     const result = getMinimumCoins(targetAmount, coins);
