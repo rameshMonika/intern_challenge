@@ -5,7 +5,11 @@ function App() {
   const [denominations, setDenominations] = useState("");
   const [result, setResult] = useState([]);
   const [error, setError] = useState("");
-
+  // for local use
+  const backendUrl = "http://localhost:5000"; // Change this to your backend URL if needed
+  // for production use
+  // const backendUrl = "http://34.126.137.168 ; 
+  
   const handleSubmit = async () => {
     setError("");
     setResult([]);
@@ -22,7 +26,7 @@ function App() {
     }
 
     try {
-      const response = await fetch(`http://34.126.137.168/api/coins`, {
+      const response = await fetch(`${backendUrl}/api/coins`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
