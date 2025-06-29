@@ -8,8 +8,7 @@ const allowedOrigins = [
   "http://localhost",
   "http://localhost:3000",
   "http://127.0.0.1:3000",
-  "http://34.124.103.42",
-  "http://localhost:5000",
+  "http://34.126.137.168"
 ];
 
 app.use(
